@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import '@mantine/core/styles.css';
+import { MantineProvider} from '@mantine/core';
+import Searching from './components/Searching';
+import GroupOfButttons from './components/GroupOfButttons';
+import { useQuery } from '@tanstack/react-query';
 
-function App() {
-  const [count, setCount] = useState(0)
 
+
+export default function App() {
+  const {data} = useQuery({
+    queryKey: ['pokemons'],
+    queryFn: async () => {
+      const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=5').then(res => res.json())
+      return res.results;
+    }
+  })
+
+  const pokemons = data?.map((pokemon: { name: string }) => pokemon.name).join(', ');
+
+  console.log(data, pokemons)
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <MantineProvider>
+      <div className="flex justify-between items-center p-4 mt-4">
+        <Searching/>
+        <GroupOfButttons/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </MantineProvider>
   )
 }
-
-export default App
