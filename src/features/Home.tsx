@@ -1,6 +1,6 @@
-import GroupOfButttons from "../components/GroupOfButttons";
-import Searching from "../components/Searching";
-import PokedexPage from "./pokedex/PokedexPage";
+import GroupOfButttons from "./pokedex/components/GroupOfButttons";
+import Searching from "./pokedex/components/Searching";
+import PokedexPage from "./pokedex/pages/PokedexPage";
 
 
 export default function Home() {

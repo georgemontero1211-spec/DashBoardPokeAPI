@@ -1,5 +1,5 @@
 
-import { typesOfPokemon} from '../data/TypeOfPokemon'
+import { typesOfPokemon} from '../../../data/TypeOfPokemon'
 import TypeButton from './TypeButton';
 
 export default function GroupOfButttons() {

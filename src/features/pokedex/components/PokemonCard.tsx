@@ -1,5 +1,5 @@
-import { usePokemon } from "../../api/hooks/usePokemons";
-import TypeBadge from "../../components/TypeBadge";
+import { usePokemon } from "../hooks/usePokemons";
+import TypeBadge from "./TypeBadge";
 
 type PokemonCardProps = {
   url: string;
@@ -17,7 +17,7 @@ export default function PokemonCard({ url }: PokemonCardProps) {
     <button className="relative w-72 h-auto p-4 border rounded shadow-lg flex flex-col items-center hover:cursor-pointer 
      hover:-translate-y-2 hover:-translate-x-1 transition duration-150"
     onClick={() => {}}>
-      <span className="absolute top-10 text-8xl font-extrabold text-gray-300 opacity-50 z-0">
+      <span className="absolute top-10 text-7xl font-extrabold text-gray-300 opacity-50 z-0">
         #{data.id}
       </span>
       <img

@@ -1,5 +1,5 @@
 import { Button } from "@mantine/core";
-import { typeColors } from "../theme/pokemonColors";
+import { typeColors } from "../../../theme/pokemonColors";
 
 type Props = {
   typeName: string;

@@ -1,5 +1,5 @@
 import { Autocomplete } from '@mantine/core';
-import { GenerationSelect } from './GenerationSelect';
+
 
 
 export default function Searching() {
@@ -11,7 +11,6 @@ export default function Searching() {
             label=""
             data={['Pikachu', 'Charmander', 'Bulbasaur', 'Squirtle']}
             />
-            <GenerationSelect/>
         </div>
    </>
   )

@@ -1,16 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { getPokemons, getPokemonById } from "../services/pokemonService";
 import type {
   Pokemon,
-  PokemonBasic,
+  PokemonListResponse,
   PokemonSimplified,
-} from "../../types/pokemon";
+} from "../../../types/pokemon";
 
-// Lista básica
-export const usePokemons = () =>
-  useQuery<PokemonBasic[]>({
-    queryKey: ["pokemons"],
-    queryFn: getPokemons,
+export const usePokemons = (page: number, limit: number = 20) =>
+  useQuery<PokemonListResponse>({
+    queryKey: ["pokemons", page],
+    queryFn: () => getPokemons(page, limit),
+    placeholderData: keepPreviousData, // 👈 mantiene la data mientras carga la nueva página
   });
 
 // Pokémon individual
