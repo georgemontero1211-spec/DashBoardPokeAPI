@@ -1,6 +1,6 @@
 
 import { typesOfPokemon} from '../data/TypeOfPokemon'
-import { Button } from '@mantine/core';
+import TypeButton from './TypeButton';
 
 export default function GroupOfButttons() {
 
@@ -8,7 +8,7 @@ export default function GroupOfButttons() {
     return (
         <div className=' grid grid-cols-8 gap-2'>
             {typesOfPokemon.map((type) => (
-                <Button variant="filled" color={type.color} size="xs" key={type.name}>{type.name}</Button>
+                <TypeButton key={type.name} typeName={type.name}/>
             ))}
         </div>
     )
