@@ -48,3 +48,12 @@ export const usePokemon = (id: number) =>
       ),
     }),
   });
+
+export function usePokemonData(open: () => void, url: string) {
+  open();
+  const id = Number(url.match(/\/pokemon\/(\d+)\//)?.[1]); // sacar el id de la url
+  const { data } = usePokemon(id);
+  console.log(data);
+
+  if (!data) return null;
+}
