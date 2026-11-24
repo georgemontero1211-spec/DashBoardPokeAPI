@@ -1,69 +1,53 @@
-# React + TypeScript + Vite
+# Pokédex – Dashboard PokeAPI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Pokédex web construida con React y TypeScript que consume la [PokeAPI](https://pokeapi.co/). Muestra el listado de Pokémon en tarjetas paginadas y, al seleccionar uno, abre una vista a pantalla completa con sus sprites, sus tipos y un gráfico de sus estadísticas base.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Listado de Pokémon en una cuadrícula, 20 por página, con paginación.
+- Vista de detalle en un modal a pantalla completa:
+  - Visor de sprites del Pokémon.
+  - Insignias de tipo con el color de cada tipo.
+  - Gráfico de estadísticas base (HP, ataque, defensa, etc.).
+- Caché de las peticiones con TanStack Query.
+- Estado global del Pokémon seleccionado con Zustand.
 
-## Expanding the ESLint configuration
+## Tecnologías
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React + TypeScript + Vite
+- [Mantine](https://mantine.dev/) (core, charts, carousel)
+- TanStack Query
+- Zustand
+- Tailwind CSS
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Estructura
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── api/clients/        # Cliente base para la PokeAPI
+├── features/pokedex/
+│   ├── components/     # PokemonCard, TypeBadge, SpriteViewer, PokemonStatsChart…
+│   ├── hooks/          # usePokemons (TanStack Query)
+│   ├── pages/          # PokedexPage
+│   ├── services/       # Peticiones a la PokeAPI
+│   └── store/          # Store de Zustand
+├── helpers/            # Normalización de estadísticas
+├── theme/              # Colores por tipo de Pokémon
+└── types/              # Tipos de la PokeAPI
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Cómo ejecutarlo
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
+
+No necesita variables de entorno: la PokeAPI es pública.
+
+| Script            | Descripción                       |
+| ----------------- | --------------------------------- |
+| `npm run dev`     | Servidor de desarrollo            |
+| `npm run build`   | Compila TypeScript y genera build |
+| `npm run preview` | Sirve el build de producción      |
+| `npm run lint`    | Ejecuta ESLint                    |
